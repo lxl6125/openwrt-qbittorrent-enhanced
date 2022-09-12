@@ -7,33 +7,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qBittorrent-Enhanced-Edition
-PKG_VERSION:=4.4.3.12
+PKG_VERSION:=4.4.5.10
 PKG_RELEASE=1
 
 STRIP:=true
 
 ifeq ($(ARCH),aarch64)
 	PKG_ARCH:=aarch64-linux-musl
-endif
-
-ifeq ($(ARCH),arm)
-	PKG_ARCH:=arm-linux-musleabi
-endif
-
-ifeq ($(ARCH),mips)
-	PKG_ARCH:=mips-linux-musl
-endif
-
-ifeq ($(ARCH),mips64)
-	PKG_ARCH:=mips64-linux-musl
-endif
-
-ifeq ($(ARCH),mips64el)
-	PKG_ARCH:=mips64el-linux-musl
-endif
-
-ifeq ($(ARCH),mipsel)
-	PKG_ARCH:=mipsel-linux-musl
 endif
 
 ifeq ($(ARCH),x86_64)
