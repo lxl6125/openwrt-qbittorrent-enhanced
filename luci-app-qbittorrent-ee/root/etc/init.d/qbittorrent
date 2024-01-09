@@ -33,7 +33,7 @@ Cookies=@Invalid()
 [Preferences]
 Advanced\AutoBanUnknownPeer=true
 Bittorrent\AutoUpdateTrackers=true
-Bittorrent\CustomizeTrackersListUrl=https://trackerslist.com/all.txt
+Bittorrent\CustomizeTrackersListUrl=https://js.cdn.haah.net/gh/XIU2/TrackersListCollection/all.txt
 Downloads\SavePath=${download_dir}
 General\Locale=zh_CN
 IPFilter\Enabled=false
@@ -41,6 +41,7 @@ IPFilter\File=$2/qBittorrent/ipfilter.dat
 IPFilter\FilterTracker=false
 WebUI\CSRFProtection=false
 WebUI\Port=${port}
+WebUI\Password_PBKDF2="@ByteArray(ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==)"
 EOF
 	fi
 }
