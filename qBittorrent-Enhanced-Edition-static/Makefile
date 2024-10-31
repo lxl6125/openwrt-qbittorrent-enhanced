@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qBittorrent-Enhanced-Edition-static
-PKG_VERSION:=4.6.7.10
+PKG_VERSION:=5.0.0.10
 PKG_RELEASE=1
 
 STRIP:=true
@@ -24,15 +24,12 @@ ifeq ($(ARCH),x86_64)
 	PKG_ARCH:=x86_64-linux-musl
 endif
 
-PKG_SOURCE:=qbittorrent-enhanced-nox_$(PKG_ARCH)_static.zip
-PKG_SOURCE_URL:=https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-$(PKG_VERSION)/
-PKG_HASH:=skip
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
 	SECTION:=net
 	CATEGORY:=Network
+	DEPENDS:=@(arm||aarch64||x86_64)
 	SUBMENU:=BitTorrent
 	TITLE:=bittorrent client programmed in C++ / Qt
 	URL:=https://www.qbittorrent.org/
@@ -46,7 +43,13 @@ define Package/$(PKG_NAME)/description
   well as many features.
 endef
 
+PKG_SOURCE_URL_FILE:=qbittorrent-enhanced-nox_$(PKG_ARCH)_static.zip
+PKG_SOURCE_URL:=https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-$(PKG_VERSION)/
+PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION)_$(PKG_ARCH)_static.zip
+PKG_HASH:=skip
+
 define Build/Compile
+	$(shell unzip -q -o -d $(PKG_BUILD_DIR)/.. $(DL_DIR)/$(PKG_NAME)_$(PKG_VERSION)_$(PKG_ARCH)_static.zip)
 endef
 
 define Package/$(PKG_NAME)/install

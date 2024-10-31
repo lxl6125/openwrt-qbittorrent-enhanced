@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qBittorrent-Enhanced-Edition
-PKG_VERSION:=4.6.7.10
+PKG_VERSION:=5.0.0.10
 PKG_RELEASE=1
 
 PKG_SOURCE:=$(PKG_NAME)-release-$(PKG_VERSION).tar.gz
@@ -20,7 +20,7 @@ PKG_LICENSE:=GPL-2.0+
 PKG_LICENSE_FILES:=COPYING
 PKG_CPE_ID:=cpe:/a:qbittorrent:qbittorrent
 
-PKG_BUILD_DEPENDS:=qttools
+PKG_BUILD_DEPENDS:=qt6tools/host
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
@@ -33,14 +33,13 @@ define Package/$(PKG_NAME)
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=BitTorrent
-	DEPENDS:=+libgcc +libstdcpp \
-		+rblibtorrent \
-		+libopenssl \
-		+qt5-core \
-		+qt5-network \
-		+qt5-sql \
-		+qt5-xml \
-		+zlib
+	DEPENDS:=+libtorrent-rasterbar \
+		+libQt6Core \
+		+libQt6Network \
+		+libQt6Sql \
+		+libQt6Xml \
+		+qt6-plugin-libqopensslbackend \
+		+qt6-plugin-libqsqlite
 	TITLE:=bittorrent client programmed in C++ / Qt
 	URL:=https://www.qbittorrent.org/
 	PROVIDES:=qBittorrent
@@ -56,7 +55,7 @@ endef
 
 CMAKE_OPTIONS += \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DQT6=OFF \
+	-DQT6=ON \
 	-DSTACKTRACE=OFF \
 	-DWEBUI=ON \
 	-DGUI=OFF \
