@@ -49,7 +49,7 @@ PKG_SOURCE:=$(PKG_NAME)_$(PKG_VERSION)_$(PKG_ARCH)_static.zip
 PKG_HASH:=skip
 
 define Build/Compile
-	$(shell unzip -q -o -d $(PKG_BUILD_DIR)/.. $(DL_DIR)/$(PKG_NAME)_$(PKG_VERSION)_$(PKG_ARCH)_static.zip)
+	unzip -q -o -d $(PKG_BUILD_DIR)/.. $(DL_DIR)/$(PKG_NAME)_$(PKG_VERSION)_$(PKG_ARCH)_static.zip
 endef
 
 define Package/$(PKG_NAME)/install
