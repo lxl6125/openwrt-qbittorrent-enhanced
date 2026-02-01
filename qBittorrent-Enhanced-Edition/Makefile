@@ -26,7 +26,7 @@ define Package/$(PKG_NAME)
   TITLE:=bittorrent client programmed in C++ / Qt
   URL:=https://github.com/c0re100/qBittorrent-Enhanced-Edition
   DEPENDS:=+libtorrent-rasterbar +libQt6Core +libQt6Network +libQt6Sql \
-    +libQt6Xml +qt6-plugin-libqopensslbackend +qt6-plugin-libqsqlite
+	+libQt6Xml +qt6-plugin-libqopensslbackend +qt6-plugin-libqsqlite
   PROVIDES:=qbittorrent
 endef
 
@@ -48,7 +48,14 @@ CMAKE_OPTIONS+= \
 	-DQT6=ON \
 	-DSTACKTRACE=OFF \
 	-DWEBUI=ON \
-	-DQT_ADDITIONAL_PACKAGES_PREFIX_PATH=$(STAGING_DIR_HOSTPKG)
+	-DQT_ADDITIONAL_PACKAGES_PREFIX_PATH=$(STAGING_DIR_HOSTPKG) \
+	-DCMAKE_PREFIX_PATH=$(STAGING_DIR)/usr \
+	-DCMAKE_FIND_ROOT_PATH=$(STAGING_DIR) \
+	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY \
+	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
+	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY \
+	-DCMAKE_SYSTEM_PREFIX_PATH=$(STAGING_DIR)/usr \
+	-DOPENSSL_ROOT_DIR=$(STAGING_DIR)/usr
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin
